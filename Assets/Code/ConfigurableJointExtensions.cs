@@ -52,6 +52,9 @@ public static class ConfigurableJointExtensions
 		joint.targetRotation = resultRotation;
 	}
 	
+	/* This method uses some obsolete functions.
+	 * 
+	 * 
 	/// <summary>
 	/// Adjust ConfigurableJoint settings to closely match CharacterJoint behaviour
 	/// </summary>
@@ -72,4 +75,5 @@ public static class ConfigurableJointExtensions
 		slerpDrive.maximumForce = Mathf.Infinity;
 		joint.slerpDrive = slerpDrive;
 	}
+	*/
 }
