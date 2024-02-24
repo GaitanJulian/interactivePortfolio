@@ -1,29 +1,64 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private Transform[] animatedTransfomrsArrays; // This array will reference the transform of the animated body of the player
-    [SerializeField] private ConfigurableJoint[] jointsArray; // This array will contain all the joints of the player
+    [SerializeField] private float speed = 500f;
+    [SerializeField] private float sprintSpeedMultiplier = 1.5f;
+    [SerializeField] private float strafeSpeed = 300f;
+    [SerializeField] private float jumpForce = 1500f;
+    [SerializeField] private Rigidbody hips;
 
-    private Quaternion[] initialRotations;
+    private PlayerControls controls;
+    public bool isGrounded;
+    private bool isSprinting;
 
-    private void Start()
+    private void Awake()
     {
-        initialRotations = new Quaternion[jointsArray.Length];
+        controls = new PlayerControls();
+        controls.Enable();
+        // controls.Player.Move.performed += Move;
+        controls.Player.Sprint.performed += ToggleSprint;
+        controls.Player.Jump.performed += Jump;
+    }
 
-        for (int i = 0; i < jointsArray.Length; i++)
+    private void OnDisable()
+    {
+        controls.Disable();
+    }
+
+    private void FixedUpdate()
+    {
+        Vector2 inputVector = controls.Player.Move.ReadValue<Vector2>();
+        // Move forward and backward
+
+        Vector3 movement = transform.forward * inputVector.y * speed;
+
+        // Strafe left and right
+        movement += transform.right * inputVector.x * strafeSpeed;
+
+        // Apply sprinting speed if sprinting
+        if (isSprinting)
         {
-            initialRotations[i] = jointsArray[i].transform.localRotation; // Store the initial rotations of each joint
+            movement *= sprintSpeedMultiplier;
+        }
+
+        // Apply movement force
+        hips.AddForce(movement);
+    }
+
+    private void Jump(InputAction.CallbackContext context)
+    {
+        if (isGrounded)
+        {
+            hips.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            isGrounded = false;
         }
     }
 
-    private void Update()
+    private void ToggleSprint(InputAction.CallbackContext context)
     {
-        for (int i = 0; i < jointsArray.Length; i++)
-        {
-            ConfigurableJointExtensions.SetTargetRotationLocal(jointsArray[i], animatedTransfomrsArrays[i].localRotation, initialRotations[i]);
-        }
+        isSprinting = !isSprinting;
     }
+
 }
