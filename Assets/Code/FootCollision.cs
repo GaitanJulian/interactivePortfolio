@@ -4,15 +4,11 @@ using UnityEngine;
 
 public class FootCollision : MonoBehaviour
 {
-    private PlayerController controller;
+    private PhysicalAnimationsController controller;
 
     private void Start()
     {
-        controller = FindObjectOfType<PlayerController>();
+        controller = FindObjectOfType<PhysicalAnimationsController>();
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        controller.isGrounded = true;
-    }
 }
