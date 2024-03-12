@@ -6,51 +6,54 @@ using UnityEngine;
 
 public class ObjectsGrabController : MonoBehaviour
 {
-    [SerializeField] private Animator animator;
     [SerializeField] private HandCollider leftHand;
     [SerializeField] private HandCollider rightHand;
 
-    private StarterAssetsInputs _input;
+    [SerializeField] private Transform[] IKTransforms;
+    [SerializeField] private Transform[] animatedArms;
+    [SerializeField] private ConfigurableJoint[] armsJointsArray;
+    private Quaternion[] initialRotations;
 
-    private int _animIDLeftGrab;
-    private int _animIDRightGrab;
+    private StarterAssetsInputs _input;
 
     private void Start()
     {
         _input = GetComponent<StarterAssetsInputs>();
-        AssignAnimationIDs();
+
+        initialRotations = new Quaternion[armsJointsArray.Length];
+
+        // Iterate through the jointsArray using an index variable
+        for (int i = 0; i < armsJointsArray.Length; i++)
+        {
+            // Store the initial local rotation of the current joint in initialRotations array
+            initialRotations[i] = armsJointsArray[i].transform.localRotation;
+        }
     }
 
     private void Update()
     {
         if (_input.leftGrab)
         {
-            animator.SetBool(_animIDLeftGrab, true);
+            FollowLeftHand();
             GrabObj(leftHand);
         }
         else
         {
+            AnimatedLeftHand();
             DropObj(leftHand);
-            animator.SetBool(_animIDLeftGrab, false);
         }
 
         if (_input.rightGrab) 
         {
-            animator.SetBool(_animIDRightGrab, true);
+            FollowRightHand();
             GrabObj(rightHand);
         }
         else
         {
+            AnimatedRightHand();
             DropObj(rightHand);
-            animator.SetBool (_animIDRightGrab, false);
         }
 
-    }
-
-    private void AssignAnimationIDs()
-    {
-        _animIDLeftGrab = Animator.StringToHash("LeftHand");
-        _animIDRightGrab = Animator.StringToHash("RightHand");
     }
 
     private void GrabObj(HandCollider hand)
@@ -72,5 +75,37 @@ public class ObjectsGrabController : MonoBehaviour
             hand.isGrabbing = false;
         }
             
+    }
+
+    private void FollowLeftHand()
+    {
+        for (int i = 0; i < 4;  i++) 
+        {
+           ConfigurableJointExtensions.SetTargetRotationLocal(armsJointsArray[i], IKTransforms[i].localRotation, initialRotations[i]);
+        }
+    }
+
+    private void FollowRightHand()
+    {
+        for (int i = 4; i < armsJointsArray.Length; i++)
+        {
+            ConfigurableJointExtensions.SetTargetRotationLocal(armsJointsArray[i], IKTransforms[i].localRotation, initialRotations[i]);
+        }
+    }
+
+    private void AnimatedLeftHand()
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            ConfigurableJointExtensions.SetTargetRotationLocal(armsJointsArray[i], animatedArms[i].localRotation, initialRotations[i]);
+        }
+    }
+
+    private void AnimatedRightHand() 
+    {
+        for (int i = 4; i < armsJointsArray.Length; i++)
+        {
+            ConfigurableJointExtensions.SetTargetRotationLocal(armsJointsArray[i], animatedArms[i].localRotation, initialRotations[i]);
+        }
     }
 }
