@@ -7,4 +7,5 @@ public class ProjectData : ScriptableObject
     public string title;
     [TextArea(3, 10)]
     public string summary;
+    public string webSite;
 }

@@ -86,6 +86,7 @@ public class IsometricController : MonoBehaviour
 
     private const float _threshold = 0.01f;
 
+    private NavigationManager _navigationManager;
     private bool IsCurrentDeviceMouse
     {
         get
@@ -106,6 +107,7 @@ public class IsometricController : MonoBehaviour
         {
             _mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
         }
+        _navigationManager = FindObjectOfType<NavigationManager>();
     }
 
     private void Start()
@@ -175,6 +177,8 @@ public class IsometricController : MonoBehaviour
 
     private void Move()
     {
+        if (!_navigationManager.canMove)
+        { return; }
         // set target speed based on move speed, sprint speed and if sprint is pressed
         float targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed;
 
@@ -238,6 +242,8 @@ public class IsometricController : MonoBehaviour
 
     private void JumpAndGravity()
     {
+        if (!_navigationManager.canMove)
+        { return; }
 
         if (Grounded)
         {

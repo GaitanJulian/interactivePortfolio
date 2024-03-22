@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ed2ea1fe21b4c546a0119e27525b18c, type: 3}
+  m_Name: LifeBy
+  m_EditorClassIdentifier: 
+  image: {fileID: 21300000, guid: d1c0a92e89704f648a2bb8531140bcf2, type: 3}
+  title: Life By Candlelight
+  summary: Survive the shadows in this first-person horror game. Armed with only
+    a flickering candle, explore the haunted mansion, unravel its secrets, and find
+    an escape before the light fades away.
+  webSite: https://damamapi.itch.io/life-by-candlelight

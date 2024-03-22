@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ed2ea1fe21b4c546a0119e27525b18c, type: 3}
+  m_Name: BootcampBrawlers
+  m_EditorClassIdentifier: 
+  image: {fileID: 21300000, guid: 4368ad809676960459e473c4f32d2e21, type: 3}
+  title: Bootcamp Brawlers
+  summary: Experience the ultimate party game! Up to 4 players can dive into a variety
+    of quick and fun minigames. Get ready for laughter, competition, and endless
+    multiplayer excitement!
+  webSite: https://joulesp.itch.io/boot-camp-brawlers

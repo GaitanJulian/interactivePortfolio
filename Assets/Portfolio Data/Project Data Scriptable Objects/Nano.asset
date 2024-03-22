@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ed2ea1fe21b4c546a0119e27525b18c, type: 3}
+  m_Name: Nano
+  m_EditorClassIdentifier: 
+  image: {fileID: 21300000, guid: 3a799de9fca00394bbcb9896667d1d85, type: 3}
+  title: NanoEscape
+  summary: Navigate a puzzling journey in this platformer! Shrink down and maneuver
+    through the laboratory, solving puzzles to return to normal size.
+  webSite: https://gaitanjulian.itch.io/nanoescape
