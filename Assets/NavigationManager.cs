@@ -2,6 +2,7 @@ using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class NavigationManager : MonoBehaviour
 {
@@ -17,8 +18,9 @@ public class NavigationManager : MonoBehaviour
 
     [Header("Menu")]
     [SerializeField] private MenuAnimations menuAnimations;
-    [SerializeField] GameObject menu;
-    [SerializeField] Collider menuCollider;
+    [SerializeField] private GameObject menu;
+    [SerializeField] private Collider menuCollider;
+    [SerializeField] private GameObject menuCanvas;
 
     // For enabling the character movement
     [HideInInspector] public bool canMove = false;
@@ -37,6 +39,9 @@ public class NavigationManager : MonoBehaviour
     private int animationIDProjects;
     private int animationIDPlayground;
 
+    [Header("Menu buttons")]
+    [SerializeField] private Button[] menuButtons;
+
     private void Start()
     {
         currentLocation = entrancePosition;
@@ -49,7 +54,7 @@ public class NavigationManager : MonoBehaviour
         animationIDAboutme = Animator.StringToHash("About me Camera");
         animationIDFollowPlayer = Animator.StringToHash("Player Follow Camera");
         animationIDCredits = Animator.StringToHash("Credits Camera");
-        animationIDProjects = Animator.StringToHash("Projects Camera");
+        animationIDProjects = Animator.StringToHash("Projects camera");
         animationIDPlayground = Animator.StringToHash("Playground Camera");
     }
 
@@ -102,9 +107,18 @@ public class NavigationManager : MonoBehaviour
 
     private void ChangeLocation(Transform location)
     {
+        TurnOffButtons();
         menuAnimations.CloseMenu();
+        menuCanvas.SetActive(false);
         menuCollider.enabled = true;
-        menu.transform.DOMove(location.position, menuAnimationDuration);
+
+        // Convert world space position to local space relative to the menu object's parent
+        Vector3 localTargetPosition = menu.transform.parent.InverseTransformPoint(location.position);
+
+        // Move the menu object to the local target position
+        menu.transform.DOLocalMove(localTargetPosition, menuAnimationDuration);
+
+        //menu.transform.DOMove(location.position, menuAnimationDuration);
         currentLocation = location;
 
         if (currentLocation == followPLayerPosition)
@@ -127,13 +141,34 @@ public class NavigationManager : MonoBehaviour
 
     public void OnMenuClick()
     {
+        menuCanvas.SetActive(true);
         menuAnimations.OpenMenu();
-        menu.transform.DOMove(openMenuPosition.position, menuAnimationDuration);
+
+        // Convert world space position to local space relative to the menu object's parent
+        Vector3 localTargetPosition = menu.transform.parent.InverseTransformPoint(openMenuPosition.position);
+
+        menu.transform.DOLocalMove(localTargetPosition, menuAnimationDuration).OnComplete(() => TurnOnButtons()) ;
         menuCollider.enabled = false;
     }
 
     public void OpenURL(string url)
     {
         Application.OpenURL(url);
+    }
+
+    private void TurnOnButtons()
+    {
+        foreach(Button button in menuButtons)
+        {
+            button.interactable = true;
+        }
+    }
+
+    private void TurnOffButtons()
+    {
+        foreach (Button button in menuButtons)
+        {
+            button.interactable = false;
+        }
     }
 }

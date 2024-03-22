@@ -1,9 +1,7 @@
 using StarterAssets;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Rendering;
+
 
 public class IsometricController : MonoBehaviour
 {
@@ -307,5 +305,6 @@ public class IsometricController : MonoBehaviour
             AudioSource.PlayClipAtPoint(LandingAudioClip, _footSound.position, FootstepAudioVolume);
         }
     }
+
 }
 

@@ -97,6 +97,7 @@ MonoBehaviour:
   nextArrow: {fileID: 6877585944692098442}
   prevArrow: {fileID: 2225799139128454735}
   navBar: {fileID: 7168903057763196111}
+  projectsContainer: {fileID: 0}
 --- !u!1 &232756592904045404
 GameObject:
   m_ObjectHideFlags: 0
@@ -164,6 +165,7 @@ MonoBehaviour:
   nextArrow: {fileID: 6877585944692098442}
   previousArrow: {fileID: 2225799139128454735}
   navBar: {fileID: 7168903057763196111}
+  projectsContainer: {fileID: 0}
 --- !u!114 &6557046057368975487
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -404,6 +406,7 @@ MonoBehaviour:
   nextArrow: {fileID: 6877585944692098442}
   previousArrow: {fileID: 2225799139128454735}
   navBar: {fileID: 7168903057763196111}
+  projectsContainer: {fileID: 0}
 --- !u!114 &7203303011654008761
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -928,12 +931,12 @@ RectTransform:
   m_Children:
   - {fileID: 7719826184884481183}
   - {fileID: 2784675918666388337}
-  m_Father: {fileID: 2760096409265029224}
+  m_Father: {fileID: 3143347016842179917}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 1.2529998, y: 0.23175}
-  m_SizeDelta: {x: 0, y: 0.4635}
+  m_AnchoredPosition: {x: 0.56500006, y: 0.23169993}
+  m_SizeDelta: {x: -1.3761, y: 0.4635}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3765170791399381986
 CanvasRenderer:
@@ -2143,7 +2146,6 @@ RectTransform:
   m_Children:
   - {fileID: 5780630840937724886}
   - {fileID: 125097437481115528}
-  - {fileID: 462075793392484068}
   m_Father: {fileID: 3143347016842179917}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2289,6 +2291,7 @@ RectTransform:
   m_Children:
   - {fileID: 7547015872121950337}
   - {fileID: 2760096409265029224}
+  - {fileID: 462075793392484068}
   m_Father: {fileID: 6064826643627738174}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
@@ -2711,6 +2714,7 @@ MonoBehaviour:
   nextArrow: {fileID: 6877585944692098442}
   previousArrow: {fileID: 2225799139128454735}
   navBar: {fileID: 7168903057763196111}
+  projectsContainer: {fileID: 0}
 --- !u!114 &2264339320624839173
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2834,6 +2838,7 @@ MonoBehaviour:
   nextArrow: {fileID: 6877585944692098442}
   previousArrow: {fileID: 2225799139128454735}
   navBar: {fileID: 7168903057763196111}
+  projectsContainer: {fileID: 0}
 --- !u!114 &848782483830904717
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4218,6 +4223,7 @@ MonoBehaviour:
   nextArrow: {fileID: 6877585944692098442}
   previousArrow: {fileID: 2225799139128454735}
   navBar: {fileID: 7168903057763196111}
+  projectsContainer: {fileID: 0}
 --- !u!114 &8982370472339862254
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4683,6 +4689,7 @@ MonoBehaviour:
   nextArrow: {fileID: 6877585944692098442}
   previousArrow: {fileID: 2225799139128454735}
   navBar: {fileID: 7168903057763196111}
+  projectsContainer: {fileID: 0}
 --- !u!114 &3478709433964921298
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4848,6 +4855,7 @@ MonoBehaviour:
   nextArrow: {fileID: 6877585944692098442}
   previousArrow: {fileID: 2225799139128454735}
   navBar: {fileID: 7168903057763196111}
+  projectsContainer: {fileID: 0}
 --- !u!114 &7264798534121426889
 MonoBehaviour:
   m_ObjectHideFlags: 0
