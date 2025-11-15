@@ -42,10 +42,32 @@ public class NavigationManager : MonoBehaviour
     [Header("Menu buttons")]
     [SerializeField] private Button[] menuButtons;
 
+    [Header("Camera & Culling")]
+    [SerializeField] private Camera mainCamera;           // Cámara con CinemachineBrain
+    [SerializeField] private LayerMask hideInAboutMeMask; // = capa(s) a ocultar en AboutMe
+    private int defaultCullingMask;
+
     private void Start()
     {
         currentLocation = entrancePosition;
         AssignAnimationIDs();
+
+        if (mainCamera == null) mainCamera = Camera.main;
+        defaultCullingMask = mainCamera.cullingMask;
+    }
+
+    private void SetAboutMeCulling(bool aboutMeActive)
+    {
+        if (aboutMeActive)
+        {
+            // Oculta las capas indicadas
+            mainCamera.cullingMask = defaultCullingMask & ~hideInAboutMeMask.value;
+        }
+        else
+        {
+            // Restaura culling por defecto
+            mainCamera.cullingMask = defaultCullingMask;
+        }
     }
 
     private void AssignAnimationIDs()
@@ -73,24 +95,28 @@ public class NavigationManager : MonoBehaviour
     {
         cinemachineAnimator.Play(animationIDAboutme);
         ChangeLocation(aboutMePosition);
+        SetAboutMeCulling(true);
     }
 
     public void OnProjects()
     {
         cinemachineAnimator.Play(animationIDProjects);
         ChangeLocation(projectsPosition);
+        SetAboutMeCulling(false);
     }
 
     public void OnCredits()
     {
         cinemachineAnimator.Play(animationIDCredits);
         ChangeLocation(creditsPosition);
+        SetAboutMeCulling(false);
     }
 
     public void OnPlayground()
     {
         cinemachineAnimator.Play(animationIDPlayground);
         ChangeLocation(playgroundPosition);
+        SetAboutMeCulling(false);
     }
 
     public void OnExplore()
@@ -102,6 +128,7 @@ public class NavigationManager : MonoBehaviour
             mesh.enabled = false;
         }
         areWallsRendered = false;
+        SetAboutMeCulling(false);
     }
 
 

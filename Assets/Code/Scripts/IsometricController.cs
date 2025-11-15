@@ -183,7 +183,7 @@ public class IsometricController : MonoBehaviour
         if (_input.move == Vector2.zero) targetSpeed = 0.0f;
 
         // a reference to the players current horizontal velocity
-        float currentHorizontalSpeed = new Vector3(_hips.velocity.x, 0.0f, _hips.velocity.z).magnitude;
+        float currentHorizontalSpeed = new Vector3(_hips.linearVelocity.x, 0.0f, _hips.linearVelocity.z).magnitude;
 
         float speedOffset = 0.1f;
         float inputMagnitude = _input.analogMovement ? _input.move.magnitude : 1f;
